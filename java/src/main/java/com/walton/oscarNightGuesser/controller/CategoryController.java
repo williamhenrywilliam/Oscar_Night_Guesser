@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryDao categoryDao;
@@ -19,9 +19,14 @@ public class CategoryController {
         this.categoryDao = categoryDao;
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Category getCategoryById(@PathVariable int categoryId){
-        return categoryDao.getCategoryById(categoryId);
+    @RequestMapping(path = "/id/{id}", method = RequestMethod.GET)
+    public Category getCategoryById(@PathVariable int id){
+        return categoryDao.getCategoryById(id);
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Category> getAllCategories(){
+        return categoryDao.getAllCategories();
     }
 
 

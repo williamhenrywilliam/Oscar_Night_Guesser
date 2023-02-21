@@ -1,10 +1,9 @@
 package com.walton.oscarNightGuesser.model;
 
-public class Category {
 
+public class Category {
     int categoryId;
     String name;
-
     String nominationOneTop;
     String nominationOneBottom;
     String nominationTwoTop;
@@ -15,6 +14,7 @@ public class Category {
     String nominationFourBottom;
     String nominationFiveTop;
     String nominationFiveBottom;
+
     public Category(int categoryId, String name, String nominationOneTop, String nominationOneBottom, String nominationTwoTop,
                     String nominationTwoBottom, String nominationThreeTop, String nominationThreeBottom, String nominationFourTop,
                     String nominationFourBottom, String nominationFiveTop, String nominationFiveBottom) {
@@ -31,8 +31,8 @@ public class Category {
         this.nominationFiveTop = nominationFiveTop;
         this.nominationFiveBottom = nominationFiveBottom;
     }
-    public Category(){
 
+    public Category(){
     }
 
     public int getCategoryId() {
@@ -131,7 +131,21 @@ public class Category {
         this.nominationFiveBottom = nominationFiveBottom;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                ", nominationOneTop='" + nominationOneTop + '\'' +
+                ", nominationOneBottom='" + nominationOneBottom + '\'' +
+                ", nominationTwoTop='" + nominationTwoTop + '\'' +
+                ", nominationTwoBottom='" + nominationTwoBottom + '\'' +
+                ", nominationThreeTop='" + nominationThreeTop + '\'' +
+                ", nominationThreeBottom='" + nominationThreeBottom + '\'' +
+                ", nominationFourTop='" + nominationFourTop + '\'' +
+                ", nominationFourBottom='" + nominationFourBottom + '\'' +
+                ", nominationFiveTop='" + nominationFiveTop + '\'' +
+                ", nominationFiveBottom='" + nominationFiveBottom + '\'' +
+                '}';
+    }
 }
