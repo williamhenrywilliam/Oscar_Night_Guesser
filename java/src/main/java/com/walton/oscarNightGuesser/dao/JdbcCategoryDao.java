@@ -5,25 +5,31 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class JdbcCategoryDao implements CategoryDao{
 
     private final JdbcTemplate jdbcTemplate;
-
     public JdbcCategoryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public List<Category> getAll() {
-        return null;
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT * FROM categories";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()){
+            categories.add(mapRowToCategory(results));
+        }
+        return categories;
     }
 
     @Override
     public Category getCategoryById(int categoryId) {
-        String sqlCategoryId = "SELECT * FROM category WHERE id = ?";
+        String sqlCategoryId = "SELECT * FROM categories WHERE id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlCategoryId, categoryId);
         if(results.next()){
             return mapRowToCategory(results);
