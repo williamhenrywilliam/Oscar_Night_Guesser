@@ -1,20 +1,69 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    
+
+      <header>
+        <nav>
+          <router-link to="/">Home</router-link> |
+          <router-link to="/oscars">Oscars</router-link>
+        </nav>
+      </header>
+
+      <main>
+        <router-view/>
+      </main>
+
+      <footer>
+        <div>
+          <p>This is the Footer</p>
+        </div>
+      </footer>
+
+    
   </div>
 </template>
 
 <style>
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
+  display: grid;
+  grid-template-rows: 5% 90% 5%;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer"
+  ;
+  height: 100vh;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+header {
+  grid-area: "header";
+  background-color: #333;
+  color: white;
+  border: 1px solid purple;
+  
+}
+main {
+  grid-area: "header";
+  border: 1px solid green;
+}
+
+footer {
+  grid-area: "header";
+  background-color: #333;
+  color: white;
+  border: 1px solid pink;
 }
 
 nav {
@@ -29,4 +78,6 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>
