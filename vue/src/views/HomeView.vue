@@ -20,5 +20,7 @@ export default {
 <style>
 .home {
   background-color: red;
+  height: 100%;
+  overflow: auto;
 }
 </style>

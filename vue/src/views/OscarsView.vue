@@ -76,6 +76,8 @@ export default {
 <style>
 .oscars {
   background-color: goldenrod;
+  height: 100%;
+  overflow:auto;
 }
 
 .category {

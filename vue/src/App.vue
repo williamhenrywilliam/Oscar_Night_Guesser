@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    
-
       <header>
         <nav>
           <router-link to="/">Home</router-link> |
@@ -18,8 +16,6 @@
           <p>This is the Footer</p>
         </div>
       </footer>
-
-    
   </div>
 </template>
 
@@ -27,7 +23,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+
 }
 
 #app {
@@ -45,29 +41,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  
 }
 
 header {
   grid-area: "header";
+  display: flex;
+  justify-content: center;
   background-color: #333;
   color: white;
   border: 1px solid purple;
   
 }
 main {
-  grid-area: "header";
+  grid-area: "main";
+  
   border: 1px solid green;
 }
 
 footer {
-  grid-area: "header";
+  grid-area: "footer";
   background-color: #333;
   color: white;
   border: 1px solid pink;
 }
 
 nav {
-  padding: 30px;
+  padding: 10px;
 }
 
 nav a {
