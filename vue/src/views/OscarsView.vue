@@ -18,7 +18,7 @@
               <td>{{ category.nominationOneTop }}</td>
               <td>{{ category.nominationOneBottom }}</td>
               <td>
-                <select name="user-selection" v-model="userSelection">
+                <select name="user-selection" v-model="userSelection" v-on:change="updateUserSelection(category)">
                   <option value=""> --- </option>
                   <option value="1">{{ category.nominationOneTop }}</option>
                   <option value="2">{{ category.nominationTwoTop }}</option>
@@ -28,7 +28,7 @@
                 </select>
               </td>
               <td>
-                <select name="winner-selection" v-model="winner">
+                <select name="winner-selection" v-model="winner" v-on:change="updateWinner(category)">
                   <option value=""> --- </option>
                   <option value="1">{{ category.nominationOneTop }}</option>
                   <option value="2">{{ category.nominationTwoTop }}</option>
@@ -37,7 +37,7 @@
                   <option value="5">{{ category.nominationFiveTop }}</option>
                 </select>
               </td>
-              <td>{{ results }}</td>
+              <td>{{ category.winner }}</td>
             </tr>
             <tr>
               <td>{{ category.nominationTwoTop }}</td>
@@ -78,9 +78,8 @@ export default {
   data() {
     return {
       categories: [],
-      userSelection: "", 
-      
-    winner: ""
+      userSelection: "",
+      winner: ""
     }
   },
   computed:{
@@ -91,6 +90,14 @@ export default {
       return "correct"
     } else{
       return "incorrect"}
+    }
+  },
+  methods: {
+    updateUserSelection(categoryToUpdate){
+      categoryToUpdate.userSelection = 4;
+    },
+    updateWinner(categoryToUpdate){
+      categoryToUpdate.winner = 3;
     }
   },
   mounted() {

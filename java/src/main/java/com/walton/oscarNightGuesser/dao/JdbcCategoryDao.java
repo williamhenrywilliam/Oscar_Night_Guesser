@@ -52,6 +52,8 @@ public class JdbcCategoryDao implements CategoryDao{
         category.setNominationFourBottom(rowSet.getString("nomination_4_bottom"));
         category.setNominationFiveTop(rowSet.getString("nomination_5_top"));
         category.setNominationFiveBottom(rowSet.getString("nomination_5_bottom"));
+        category.setUserSelection(rowSet.getInt("user_selection"));
+        category.setWinner(rowSet.getInt("winner"));
         return category;
     }
 }

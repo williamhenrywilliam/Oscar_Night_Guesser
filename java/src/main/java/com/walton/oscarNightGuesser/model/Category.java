@@ -14,10 +14,12 @@ public class Category {
     String nominationFourBottom;
     String nominationFiveTop;
     String nominationFiveBottom;
+    int userSelection;
+    int winner;
 
     public Category(int categoryId, String name, String nominationOneTop, String nominationOneBottom, String nominationTwoTop,
                     String nominationTwoBottom, String nominationThreeTop, String nominationThreeBottom, String nominationFourTop,
-                    String nominationFourBottom, String nominationFiveTop, String nominationFiveBottom) {
+                    String nominationFourBottom, String nominationFiveTop, String nominationFiveBottom, int userSelection, int winner) {
         this.categoryId = categoryId;
         this.name = name;
         this.nominationOneTop = nominationOneTop;
@@ -30,6 +32,8 @@ public class Category {
         this.nominationFourBottom = nominationFourBottom;
         this.nominationFiveTop = nominationFiveTop;
         this.nominationFiveBottom = nominationFiveBottom;
+        this.userSelection = userSelection;
+        this.winner = winner;
     }
 
     public Category(){
@@ -131,6 +135,22 @@ public class Category {
         this.nominationFiveBottom = nominationFiveBottom;
     }
 
+    public int getUserSelection() {
+        return userSelection;
+    }
+
+    public void setUserSelection(int userSelection) {
+        this.userSelection = userSelection;
+    }
+
+    public int getWinner() {
+        return winner;
+    }
+
+    public void setWinner(int winner) {
+        this.winner = winner;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
@@ -146,6 +166,8 @@ public class Category {
                 ", nominationFourBottom='" + nominationFourBottom + '\'' +
                 ", nominationFiveTop='" + nominationFiveTop + '\'' +
                 ", nominationFiveBottom='" + nominationFiveBottom + '\'' +
+                ", userSelection='" + userSelection + '\'' +
+                ", winner='" + winner + '\'' +
                 '}';
     }
 }
