@@ -12,36 +12,56 @@
               <th>Nomination Bottom</th>
               <th>Your Selection</th>
               <th>Winner</th>
+              <th>Results</th>
             </tr>
             <tr>
               <td>{{ category.nominationOneTop }}</td>
               <td>{{ category.nominationOneBottom }}</td>
-              <td>blank</td>
-              <td>TBD</td>
+              <td>
+                <select name="user-selection" v-model="userSelection">
+                  <option value=""> --- </option>
+                  <option value="1">{{ category.nominationOneTop }}</option>
+                  <option value="2">{{ category.nominationTwoTop }}</option>
+                  <option value="3">{{ category.nominationThreeTop }}</option>
+                  <option value="4">{{ category.nominationFourTop }}</option>
+                  <option value="5">{{ category.nominationFiveTop }}</option>
+                </select>
+              </td>
+              <td>
+                <select name="winner-selection" v-model="winner">
+                  <option value=""> --- </option>
+                  <option value="1">{{ category.nominationOneTop }}</option>
+                  <option value="2">{{ category.nominationTwoTop }}</option>
+                  <option value="3">{{ category.nominationThreeTop }}</option>
+                  <option value="4">{{ category.nominationFourTop }}</option>
+                  <option value="5">{{ category.nominationFiveTop }}</option>
+                </select>
+              </td>
+              <td>{{ results }}</td>
             </tr>
             <tr>
               <td>{{ category.nominationTwoTop }}</td>
               <td>{{ category.nominationTwoBottom }}</td>
-              <td>blank</td>
-              <td>TBD</td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <td>{{ category.nominationThreeTop }}</td>
               <td>{{ category.nominationThreeBottom }}</td>
-              <td>blank</td>
-              <td>TBD</td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <td>{{ category.nominationFourTop }}</td>
               <td>{{ category.nominationFourBottom }}</td>
-              <td>blank</td>
-              <td>TBD</td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <td>{{ category.nominationFiveTop }}</td>
               <td>{{ category.nominationFiveBottom }}</td>
-              <td>blank</td>
-              <td>TBD</td>
+              <td></td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -57,7 +77,20 @@ import CategoryService from '@/services/CategoryService';
 export default {
   data() {
     return {
-      categories: []
+      categories: [],
+      userSelection: "", 
+      
+    winner: ""
+    }
+  },
+  computed:{
+    results(){
+    if(this.winner === ""){
+      return ""
+    } else if(this.winner === this.userSelection){
+      return "correct"
+    } else{
+      return "incorrect"}
     }
   },
   mounted() {
@@ -73,7 +106,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .oscars {
   background-color: goldenrod;
   height: 100%;
