@@ -3,7 +3,7 @@
     <h1>Oscars Night 2023</h1>
     <h2>Make your guesses!</h2>
     <div>
-      <div class="category" v-for="category in categories" :key="category.categoryId">
+      <div class="category" v-for="category in categories" :key="category.categoryId" :id="category.categoryId">
         <h3>{{ category.name }}</h3>
         <table>
           <tbody>
@@ -18,7 +18,7 @@
               <td>{{ category.nominationOneTop }}</td>
               <td>{{ category.nominationOneBottom }}</td>
               <td>
-                <select name="user-selection" v-model="userSelection" v-on:change="updateUserSelection(category)">
+                <select name="user-selection" v-on:change="updateUserSelection(category)">
                   <option value=""> --- </option>
                   <option value="1">{{ category.nominationOneTop }}</option>
                   <option value="2">{{ category.nominationTwoTop }}</option>
@@ -28,7 +28,7 @@
                 </select>
               </td>
               <td>
-                <select name="winner-selection" v-model="winner" v-on:change="updateWinner(category)">
+                <select name="winner-selection" v-on:change="updateWinner(category)">
                   <option value=""> --- </option>
                   <option value="1">{{ category.nominationOneTop }}</option>
                   <option value="2">{{ category.nominationTwoTop }}</option>
@@ -37,7 +37,7 @@
                   <option value="5">{{ category.nominationFiveTop }}</option>
                 </select>
               </td>
-              <td>{{ category.winner }}</td>
+              <td>{{ category.userResults }}</td>
             </tr>
             <tr>
               <td>{{ category.nominationTwoTop }}</td>
@@ -78,26 +78,35 @@ export default {
   data() {
     return {
       categories: [],
-      userSelection: "",
-      winner: ""
+      
     }
   },
   computed:{
-    results(){
-    if(this.winner === ""){
-      return ""
-    } else if(this.winner === this.userSelection){
-      return "correct"
-    } else{
-      return "incorrect"}
-    }
+   
   },
   methods: {
     updateUserSelection(categoryToUpdate){
-      categoryToUpdate.userSelection = 4;
+      let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
+      let currentUserDropdown = currentCategoryBox.querySelector('[name=user-selection]')
+      let currentUserDropdownValue = currentUserDropdown.value;
+
+      categoryToUpdate.userSelection = currentUserDropdownValue;
     },
     updateWinner(categoryToUpdate){
-      categoryToUpdate.winner = 3;
+      let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
+      let currentUserDropdown = currentCategoryBox.querySelector('[name=winner-selection]')
+      let currentUserDropdownValue = currentUserDropdown.value;
+      
+      categoryToUpdate.winner = currentUserDropdownValue;
+
+      //currently the happy paths work, however, there are edge cases to deal with. for example, if a user make their selection then fills in the winner, THEN changes their seleciton, it won't be correct
+      if(categoryToUpdate.userSelection === ""){
+        categoryToUpdate.userResults = "Please make your selection" 
+      } else if(categoryToUpdate.userSelection === categoryToUpdate.winner) {
+        categoryToUpdate.userResults = "Correct!"
+      } else {
+        categoryToUpdate.userResults = "Incorrect :("
+      }
     }
   },
   mounted() {
