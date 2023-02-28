@@ -16,7 +16,8 @@ CREATE TABLE categories (
 	nomination_5_top varchar(100),
 	nomination_5_bottom varchar(100),
 	user_selection integer default 0,
-	winner integer default 0
+	winner integer default 0,
+	user_results varchar(100) default ''
 );
 
 INSERT INTO categories (category, nomination_1_top, nomination_1_bottom, nomination_2_top, nomination_2_bottom, nomination_3_top, nomination_3_bottom, nomination_4_top, nomination_4_bottom, nomination_5_top, nomination_5_bottom)

@@ -16,10 +16,11 @@ public class Category {
     String nominationFiveBottom;
     int userSelection;
     int winner;
+    String userResults;
 
     public Category(int categoryId, String name, String nominationOneTop, String nominationOneBottom, String nominationTwoTop,
                     String nominationTwoBottom, String nominationThreeTop, String nominationThreeBottom, String nominationFourTop,
-                    String nominationFourBottom, String nominationFiveTop, String nominationFiveBottom, int userSelection, int winner) {
+                    String nominationFourBottom, String nominationFiveTop, String nominationFiveBottom, int userSelection, int winner, String userResults) {
         this.categoryId = categoryId;
         this.name = name;
         this.nominationOneTop = nominationOneTop;
@@ -34,6 +35,7 @@ public class Category {
         this.nominationFiveBottom = nominationFiveBottom;
         this.userSelection = userSelection;
         this.winner = winner;
+        this.userResults = userResults;
     }
 
     public Category(){
@@ -151,6 +153,14 @@ public class Category {
         this.winner = winner;
     }
 
+    public String getUserResults() {
+        return userResults;
+    }
+
+    public void setUserResults(String userResults) {
+        this.userResults = userResults;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
@@ -168,6 +178,7 @@ public class Category {
                 ", nominationFiveBottom='" + nominationFiveBottom + '\'' +
                 ", userSelection='" + userSelection + '\'' +
                 ", winner='" + winner + '\'' +
+                ", userResults='" + userResults + '\'' +
                 '}';
     }
 }
