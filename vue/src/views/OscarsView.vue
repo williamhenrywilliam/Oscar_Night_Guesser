@@ -5,14 +5,14 @@
     <div>
       <div class="category" v-for="category in categories" :key="category.categoryId" :id="category.categoryId">
         <h3>{{ category.name }}</h3>
-        <table>
+        <table class="tables">
           <tbody>
             <tr>
-              <th>Nomination Top</th>
-              <th>Nomination Bottom</th>
-              <th>Your Selection</th>
-              <th>Winner</th>
-              <th>Results</th>
+              <th class="table-header-one">Nomination Top</th>
+              <th class="table-header-two">Nomination Bottom</th>
+              <th class="table-header-three">Your Selection</th>
+              <th class="table-header-four">Winner</th>
+              <th class="table-header-five">Results</th>
             </tr>
             <tr>
               <td>{{ category.nominationOneTop }}</td>
@@ -130,8 +130,32 @@ export default {
 }
 
 .category {
-  border: 1px solid blue;
-  
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+
+.tables{
+  width: 100%;
+}
+
+.table-header-one{
+  width:30%
+}
+.table-header-two{
+  width:30%
+}
+.table-header-three{
+  width:10%
+}
+.table-header-four{
+  width:10%
+}
+.table-header-five{
+  width:10%
 }
 </style>
 

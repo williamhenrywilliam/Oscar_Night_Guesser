@@ -3,7 +3,8 @@
       <header>
         <nav>
           <router-link to="/">Home</router-link> |
-          <router-link to="/oscars">Oscars</router-link>
+          <router-link to="/oscars">Oscars</router-link> |
+          <router-link to="/stats">Stats</router-link>
         </nav>
       </header>
 
@@ -18,6 +19,9 @@
       </footer>
   </div>
 </template>
+
+<script>
+</script>
 
 <style>
 
@@ -51,8 +55,11 @@ header {
   background-color: #333;
   color: white;
   border: 1px solid purple;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   
 }
+
+
 main {
   grid-area: "main";
   
@@ -72,7 +79,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 
 nav a.router-link-exact-active {

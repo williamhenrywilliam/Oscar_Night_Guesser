@@ -1,26 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HomePage msg="Welcome to Your Vue.js App"/>
   </div>
   
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HomePage from '@/components/HomePage.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    HomePage
   }
 }
 </script>
 
 <style scoped>
 .home {
-  background-color: red;
+  background-color: lightblue;
   height: 100%;
   overflow: auto;
 }
