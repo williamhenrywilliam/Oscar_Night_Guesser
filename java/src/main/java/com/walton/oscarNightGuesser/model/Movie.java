@@ -10,6 +10,8 @@ public class Movie {
         this.posterImage = posterImage;
     }
 
+    public Movie() {
+    }
     public String getMovieTitle() {
         return movieTitle;
     }

@@ -7,5 +7,9 @@ const http = axios.create({
 export default {
     getAllCategories(){
         return http.get('categories')
+    },
+
+    getFirstTenMovies(){
+        return http.get('movies')
     }
 }
