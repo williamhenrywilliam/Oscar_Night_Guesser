@@ -23,7 +23,7 @@ public class MovieControllerAPI {
     @RequestMapping(value = "")
     public List<Movie> getFirstTenMovies(){
 
-        String apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=" + KEY + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=2022-01-01";
+        String apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=" + KEY + "&language=en-US&with_original_language=en&with_awards=true&vote_count.gte=100&sort_by=vote_average.desc&primary_release_date.gte=2022-01-01";
 
         // Use the RestTemplate to make a request to the TMDb API for the first 10 popular movies
         RestTemplate restTemplate = new RestTemplate();
