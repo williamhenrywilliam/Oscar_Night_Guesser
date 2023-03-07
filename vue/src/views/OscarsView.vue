@@ -97,6 +97,8 @@ export default {
       
       if(categoryToUpdate.winner == ""){
         categoryToUpdate.userResults = "" 
+      } else if (categoryToUpdate.userSelection == ""){
+        categoryToUpdate.userResults = "Please make your selection"
       } else if(categoryToUpdate.userSelection === categoryToUpdate.winner) {
         categoryToUpdate.userResults = "Correct!"
       } else {
@@ -155,38 +157,53 @@ export default {
 
 <style scoped>
 .oscars {
-  background-color: goldenrod;
+  background-color: #be861e;
   height: 100%;
   overflow:auto;
 }
 
 .category {
-  border: 1px solid #ddd;
+  border: 1px solid #504538;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #201b15;
 }
 
+select {
+  width: 200px;
+}
+
+td {
+  text-align: left;
+  padding-left: 10px;
+}
+
+th {
+  text-decoration: underline;
+}
 
 .tables{
   width: 100%;
 }
 
 .table-header-one{
-  width:30%
+  width:22.5%
 }
 .table-header-two{
-  width:30%
+  width:22.5%
 }
 .table-header-three{
-  width:10%
+  width:15%
 }
 .table-header-four{
-  width:10%
+  width:15%
 }
 .table-header-five{
-  width:10%
+  width:15%
 }
 </style>
 
