@@ -1,7 +1,7 @@
 <template>
   <div class="oscars">
     <h1>Oscars Night 2023</h1>
-    <h2>Make your guesses!</h2>
+    <h2>Make your guesses! Correct Guesses: {{ correctGuesses }}</h2>
     <div>
       <div class="category" v-for="category in categories" :key="category.categoryId" :id="category.categoryId">
         <h3>{{ category.name }}</h3>
@@ -78,34 +78,65 @@ export default {
   data() {
     return {
       categories: [],
-      
+      correctGuesses: 0
     }
   },
   computed:{
-   
+    
   },
   methods: {
     updateUserSelection(categoryToUpdate){
+      //at the end of this function, the code calls the tallyGuesses function. declaring this self variable allows to do that
+      let self = this;
+
       let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
       let currentUserDropdown = currentCategoryBox.querySelector('[name=user-selection]')
       let currentUserDropdownValue = currentUserDropdown.value;
 
       categoryToUpdate.userSelection = currentUserDropdownValue;
+      
+      if(categoryToUpdate.winner == ""){
+        categoryToUpdate.userResults = "" 
+      } else if(categoryToUpdate.userSelection === categoryToUpdate.winner) {
+        categoryToUpdate.userResults = "Correct!"
+      } else {
+        categoryToUpdate.userResults = "Incorrect :("
+      }
+
+      self.tallyGuesses();
     },
     updateWinner(categoryToUpdate){
+      //at the end of this function, the code calls the tallyGuesses function. declaring this self variable allows to do that
+      let self = this;
+      
       let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
       let currentUserDropdown = currentCategoryBox.querySelector('[name=winner-selection]')
       let currentUserDropdownValue = currentUserDropdown.value;
       
       categoryToUpdate.winner = currentUserDropdownValue;
 
-      //currently the happy paths work, however, there are edge cases to deal with. for example, if a user make their selection then fills in the winner, THEN changes their seleciton, it won't be correct
-      if(categoryToUpdate.userSelection === ""){
+      if(categoryToUpdate.winner == ""){
+        categoryToUpdate.userResults = ""
+      } else if(categoryToUpdate.userSelection == ""){
         categoryToUpdate.userResults = "Please make your selection" 
       } else if(categoryToUpdate.userSelection === categoryToUpdate.winner) {
-        categoryToUpdate.userResults = "Correct!"
+        categoryToUpdate.userResults = "Correct!";
       } else {
         categoryToUpdate.userResults = "Incorrect :("
+      }
+
+      self.tallyGuesses();
+    },
+    //this method loops through the categories array and if userResults == "Correct!" we increase the correct guesses by 1.
+    //if we ever change "Correct!" we will need to change this as well
+    //this method is currently called every time winner or userSelection is changed.
+    tallyGuesses(){
+      this.correctGuesses = 0;
+
+      for(let i=0; i<this.categories.length; i++){
+        if(this.categories[i].userResults == "Correct!"){
+          this.correctGuesses++
+        }
       }
     }
   },
