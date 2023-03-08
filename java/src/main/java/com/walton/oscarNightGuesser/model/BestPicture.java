@@ -2,6 +2,10 @@ package com.walton.oscarNightGuesser.model;
 
 public class BestPicture {
 
+
+
+    int bestPictureId;
+
     String nominationOneTop;
     String nominationTwoTop;
     String nominationThreeTop;
@@ -17,7 +21,16 @@ public class BestPicture {
     int winner;
     String userResults;
 
-    public BestPicture(String nominationOneTop, String nominationTwoTop, String nominationThreeTop, String nominationFourTop, String nominationFiveTop, String nominationSixTop, String nominationSevenTop, String nominationEightTop, String nominationNineTop, String nominationTenTop, int userSelection, int winner, String userResults) {
+    public int getBestPictureId() {
+        return bestPictureId;
+    }
+
+    public void setBestPictureId(int bestPictureId) {
+        this.bestPictureId = bestPictureId;
+    }
+
+    public BestPicture(int bestPictureId, String nominationOneTop, String nominationTwoTop, String nominationThreeTop, String nominationFourTop, String nominationFiveTop, String nominationSixTop, String nominationSevenTop, String nominationEightTop, String nominationNineTop, String nominationTenTop, int userSelection, int winner, String userResults) {
+        this.bestPictureId = bestPictureId;
         this.nominationOneTop = nominationOneTop;
         this.nominationTwoTop = nominationTwoTop;
         this.nominationThreeTop = nominationThreeTop;
@@ -34,7 +47,7 @@ public class BestPicture {
     }
 
     public BestPicture(){
-        
+
     }
 
     public String getNominationOneTop() {
