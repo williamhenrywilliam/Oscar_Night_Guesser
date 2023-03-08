@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS best_picture;
 
 CREATE TABLE categories (
 	id SERIAL,
@@ -18,7 +19,7 @@ CREATE TABLE categories (
 	user_selection integer default 0,
 	winner integer default 0,
 	user_results varchar(100) default ''
-)
+);
 
 CREATE TABLE best_picture (
 id SERIAL PRIMARY KEY,
@@ -34,10 +35,10 @@ nomination_9_top VARCHAR(255),
 nomination_10_top VARCHAR(255),
 user_selection integer,
 winner integer,
-user_results VARCHAR(255))
+user_results VARCHAR(255));
 
 INSERT INTO best_picture (nomination_1_top, nomination_2_top, nomination_3_top, nomination_4_top, nomination_5_top, nomination_6_top, nomination_7_top, nomination_8_top, nomination_9_top, nomination_10_top, user_selection, winner)
-VALUES ('ALL QUIET ON THE WESTERN FRONT', 'AVATAR: THE WAY OF WATER', 'THE BANSHEES OF INISHERIN', 'ELVIS', 'EVERYTHING EVERYWHERE ALL AT ONCE', 'THE FABELMANS', 'TÁR', 'TOP GUN: MAVERICK', 'TRIANGLE OF SADNESS', 'WOMEN TALKING', 0, 0);
+VALUES ('All Quiet On the Western Front', 'Avatar: The Way of Water', 'The Banshees Of Inisherin', 'Elvis', 'Everything Everywhere All at Once', 'The Fabelmans', 'Tár', 'Top Gun: Maverick', 'Triangle of Sadness', 'Women Talking', 0, 0);
 
 
 INSERT INTO categories (category, nomination_1_top, nomination_1_bottom, nomination_2_top, nomination_2_bottom, nomination_3_top, nomination_3_bottom, nomination_4_top, nomination_4_bottom, nomination_5_top, nomination_5_bottom)

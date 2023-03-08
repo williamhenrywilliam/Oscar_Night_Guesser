@@ -11,5 +11,9 @@ export default {
 
     getFirstTenMovies(){
         return http.get('movies')
+    },
+
+    getBestPictureCategory(){
+        return http.get('pictures')
     }
 }
