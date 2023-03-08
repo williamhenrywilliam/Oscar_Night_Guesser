@@ -3,10 +3,11 @@ package com.walton.oscarNightGuesser.dao;
 import com.walton.oscarNightGuesser.model.BestPicture;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcBestPictureDao implements BestPictureDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -18,7 +19,7 @@ public class JdbcBestPictureDao implements BestPictureDao{
     @Override
     public List<BestPicture> getBestPictures() {
         List<BestPicture> bestPictures = new ArrayList<>();
-        String sql = "SELECT * FROM categories";
+        String sql = "SELECT * FROM best_picture";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()){
             bestPictures.add(mapRowToBestPicture(results));
