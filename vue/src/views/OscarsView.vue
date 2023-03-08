@@ -2,6 +2,100 @@
   <div class="oscars">
     <h1>Oscars Night 2023</h1>
     <h2>Make your guesses! Correct Guesses: {{ correctGuesses }}</h2>
+    <div id="bestPictureContainer">
+      <h2>Best Picture</h2>
+      <table class="tables">
+        <tbody>
+          <tr>
+            <th class="table-header-one">Nomination</th>
+            <th class="table-header-three">Your Selection</th>
+            <th class="table-header-four">Winner</th>
+            <th class="table-header-five">Results</th>
+          </tr>
+          <tr>
+            <td>{{ bestPicture[0].nominationOneTop }}</td>
+            <td>
+              <select name="bestPicture-user-selection" v-on:change="updateBestPictureSelection(bestPicture[0])">
+                <option value=""> --- </option>
+                <option value="1">{{ bestPicture[0].nominationOneTop }}</option>
+                <option value="2">{{ bestPicture[0].nominationTwoTop }}</option>
+                <option value="3">{{ bestPicture[0].nominationThreeTop }}</option>
+                <option value="4">{{ bestPicture[0].nominationFourTop }}</option>
+                <option value="5">{{ bestPicture[0].nominationFiveTop }}</option>
+                <option value="6">{{ bestPicture[0].nominationSixTop }}</option>
+                <option value="7">{{ bestPicture[0].nominationSevenTop }}</option>
+                <option value="8">{{ bestPicture[0].nominationEightTop }}</option>
+                <option value="9">{{ bestPicture[0].nominationNineTop }}</option>
+                <option value="10">{{ bestPicture[0].nominationTenTop }}</option>
+              </select>
+            </td>
+            <td>
+              <select name="bestPicture-winner-selection" v-on:change="updateBestPictureWinner(bestPicture[0])">
+                <option value=""> --- </option>
+                <option value="1">{{ bestPicture[0].nominationOneTop }}</option>
+                <option value="2">{{ bestPicture[0].nominationTwoTop }}</option>
+                <option value="3">{{ bestPicture[0].nominationThreeTop }}</option>
+                <option value="4">{{ bestPicture[0].nominationFourTop }}</option>
+                <option value="5">{{ bestPicture[0].nominationFiveTop }}</option>
+                <option value="6">{{ bestPicture[0].nominationSixTop }}</option>
+                <option value="7">{{ bestPicture[0].nominationSevenTop }}</option>
+                <option value="8">{{ bestPicture[0].nominationEightTop }}</option>
+                <option value="9">{{ bestPicture[0].nominationNineTop }}</option>
+                <option value="10">{{ bestPicture[0].nominationTenTop }}</option>
+              </select>
+            </td>
+            <td>
+              {{ bestPicture[0].userResults }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationTwoTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationThreeTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationFourTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationFiveTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationSixTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationSevenTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationEightTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationNineTop }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{ bestPicture[0].nominationTenTop }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div>
       <div class="category" v-for="category in categories" :key="category.categoryId" :id="category.categoryId">
         <h3>{{ category.name }}</h3>
@@ -78,17 +172,55 @@ export default {
   data() {
     return {
       categories: [],
-      correctGuesses: 0
+      correctGuesses: 0,
+      bestPicture: []
     }
   },
   computed:{
     
   },
   methods: {
+    updateBestPictureSelection(bestPicture){
+      let self = this;
+      let bestPictureUserDropdown = document.querySelector('[name=bestPicture-user-selection]')
+      let bestPictureUserDropdownValue = bestPictureUserDropdown.value;
+
+      bestPicture.userSelection = bestPictureUserDropdownValue;
+      
+      if(bestPicture.winner == ""){
+        bestPicture.userResults = "" 
+      } else if (bestPicture.userSelection == ""){
+        bestPicture.userResults = "Please make your selection"
+      } else if(bestPicture.userSelection === bestPicture.winner) {
+        bestPicture.userResults = "Correct!"
+      } else {
+        bestPicture.userResults = "Incorrect :("
+      }
+
+      self.tallyGuesses();
+    },
+    updateBestPictureWinner(bestPicture){
+      let self = this;
+      let bestPictureWinnerDropdown = document.querySelector('[name=bestPicture-winner-selection]')
+      let bestPictureWinnerDropdownValue = bestPictureWinnerDropdown.value;
+
+      bestPicture.winner = bestPictureWinnerDropdownValue;
+      
+      if(bestPicture.winner == ""){
+        bestPicture.userResults = "" 
+      } else if (bestPicture.userSelection == ""){
+        bestPicture.userResults = "Please make your selection"
+      } else if(bestPicture.userSelection === bestPicture.winner) {
+        bestPicture.userResults = "Correct!"
+      } else {
+        bestPicture.userResults = "Incorrect :("
+      }
+
+      self.tallyGuesses();
+    },
     updateUserSelection(categoryToUpdate){
       //at the end of this function, the code calls the tallyGuesses function. declaring this self variable allows to do that
       let self = this;
-
       let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
       let currentUserDropdown = currentCategoryBox.querySelector('[name=user-selection]')
       let currentUserDropdownValue = currentUserDropdown.value;
@@ -110,7 +242,6 @@ export default {
     updateWinner(categoryToUpdate){
       //at the end of this function, the code calls the tallyGuesses function. declaring this self variable allows to do that
       let self = this;
-      
       let currentCategoryBox = document.getElementById(categoryToUpdate.categoryId);
       let currentUserDropdown = currentCategoryBox.querySelector('[name=winner-selection]')
       let currentUserDropdownValue = currentUserDropdown.value;
@@ -140,6 +271,14 @@ export default {
           this.correctGuesses++
         }
       }
+
+      for(let i=0; i<this.bestPicture.length; i++){
+        if(this.bestPicture[i].userResults == "Correct!"){
+          this.correctGuesses++
+        }
+      }
+
+
     }
   },
   mounted() {
@@ -151,6 +290,17 @@ export default {
       .catch(error => {
         console.log(error);
       });
+
+    CategoryService.getBestPictureCategory()
+      .then(response => {
+        console.log(response);
+        this.bestPicture = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    
   }
 }
 </script>
@@ -204,6 +354,12 @@ th {
 }
 .table-header-five{
   width:15%
+}
+
+#bestPictureContainer {
+  border: 5px solid blue;
+  border-radius: 5px;
+  margin: 10px;
 }
 </style>
 
